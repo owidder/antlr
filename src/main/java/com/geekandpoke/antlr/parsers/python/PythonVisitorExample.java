@@ -7,13 +7,13 @@ import org.antlr.v4.runtime.CommonTokenStream;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 
-public class VisitorExample {
+public class PythonVisitorExample {
 
     public static void main(String[] args) throws IOException {
         var python3Visitor = new Python3Visitor();
-        String code = ParserFacade.readFile(new File("examples/render.py"), Charset.forName("UTF-8"));
+        String code = ParserFacade.readFile(new File("examples/render.py"), StandardCharsets.UTF_8);
         var lexer = new Python3Lexer(CharStreams.fromString(code));
         var tokens = new CommonTokenStream(lexer);
         var parser = new Python3Parser(tokens);

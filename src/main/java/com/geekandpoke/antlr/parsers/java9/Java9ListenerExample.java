@@ -5,12 +5,13 @@ import com.geekandpoke.antlr.grammars.java9.Java9Parser;
 import com.geekandpoke.antlr.parsers.python.ParserFacade;
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
+import org.antlr.v4.runtime.tree.ParseTreeWalker;
 
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 
-public class Java9VisitorExample {
+public class Java9ListenerExample {
 
     public static void main(String[] args) throws IOException {
         var java9Visitor = new Java9Visitor();
@@ -19,8 +20,9 @@ public class Java9VisitorExample {
         var tokens = new CommonTokenStream(lexer);
         var parser = new Java9Parser(tokens);
         var tree = parser.compilationUnit();
-        java9Visitor.visit(tree);
 
-        System.out.println(String.join(" ", java9Visitor.words));
+        var java9Listener = new Java9Listener();
+        var walker = new ParseTreeWalker();
+        walker.walk(java9Listener, tree);
     }
 }

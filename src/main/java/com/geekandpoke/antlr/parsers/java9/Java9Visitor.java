@@ -11,7 +11,8 @@ public class Java9Visitor extends Java9ParserBaseVisitor<Void> {
     public final Set<String> words = new HashSet<>();
 
     @Override
-    public Void visitClassType(Java9Parser.ClassTypeContext ctx) {
-        return super.visitClassType(ctx);
+    public Void visitIdentifier(Java9Parser.IdentifierContext ctx) {
+        System.out.println(ctx.getText());
+        return null;
     }
 }

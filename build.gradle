@@ -1,10 +1,9 @@
 plugins {
     id 'java'
-    id 'antlr'
     id 'idea'
 }
 
-group 'org.example'
+group 'com.geekandpoke'
 version '1.0-SNAPSHOT'
 
 repositories {
@@ -12,24 +11,6 @@ repositories {
 }
 
 dependencies {
-    antlr "org.antlr:antlr4:4.9.2"
     implementation "org.antlr:antlr4-runtime:4.9.2"
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
-}
-
-generateGrammarSource {
-    maxHeapSize = "128m"
-    arguments += ['-package','com.example','-visitor', '-no-listener','JavaLexer.g4']
-}
-compileJava.dependsOn generateGrammarSource
-sourceSets {
-    generated {
-        java.srcDir 'generated-src/antlr/main/'
-    }
-}
-compileJava.source sourceSets.generated.java, sourceSets.main.java
-
-test {
-    useJUnitPlatform()
+    implementation group: 'net.sf.py4j', name: 'py4j', version: '0.10.9.2'
 }

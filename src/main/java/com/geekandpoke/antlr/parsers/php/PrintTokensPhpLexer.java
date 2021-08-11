@@ -1,25 +1,28 @@
 package com.geekandpoke.antlr.parsers.php;
 
+import com.geekandpoke.antlr.common.Words;
 import com.geekandpoke.antlr.grammars.php.PhpLexer;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.Token;
 
 public class PrintTokensPhpLexer extends PhpLexer {
-    public PrintTokensPhpLexer(CharStream input) {
+
+    private final Words words;
+
+    public PrintTokensPhpLexer(CharStream input, Words words) {
         super(input);
+        this.words = words;
     }
 
     @Override
     public void emit(Token t) {
         super.emit(t);
-//        System.out.println("--> " + t.getType() + "/" + PhpLexer.VOCABULARY.getDisplayName(t.getType()));
-//        System.out.println(t.getText());
         if(t.getType() == PhpLexer.StringType
                 || t.getType() == PhpLexer.StringPart
                 || t.getType() == PhpLexer.SingleQuoteString
                 || t.getType() == PhpLexer.DoubleQuote
                 || t.getType() == PhpLexer.PHPStartDoubleQuoteString) {
-            System.out.println(t.getText());
+            words.add(t.getText());
         }
     }
 }

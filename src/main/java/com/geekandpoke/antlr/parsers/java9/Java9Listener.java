@@ -1,10 +1,20 @@
 package com.geekandpoke.antlr.parsers.java9;
 
+import com.geekandpoke.antlr.common.Words;
 import com.geekandpoke.antlr.grammars.java9.Java9Parser;
 import com.geekandpoke.antlr.grammars.java9.Java9ParserBaseListener;
 import com.geekandpoke.antlr.parsers.ListenerGuard;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Java9Listener extends Java9ParserBaseListener {
+
+    private final Words words;
+
+    public Java9Listener(Words words) {
+        this.words = words;
+    }
 
     ListenerGuard identifierGuard = new ListenerGuard();
 
@@ -31,7 +41,7 @@ public class Java9Listener extends Java9ParserBaseListener {
     @Override
     public void enterIdentifier(Java9Parser.IdentifierContext ctx) {
         if(identifierGuard.isGateOpen()) {
-            System.out.println(ctx.getText());
+            words.add(ctx.getText());
         }
     }
 

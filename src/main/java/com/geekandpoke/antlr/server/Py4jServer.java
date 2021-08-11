@@ -6,8 +6,9 @@ import py4j.GatewayServer;
 public class Py4jServer {
 
     public String startListener(String absPath) {
-        Java9ListenerStarter.start(absPath);
-        return "OK";
+        var parts = absPath.split("\\.");
+        var ext = parts[parts.length-1];
+        return Java9ListenerStarter.start(absPath);
     }
 
     public static void main(String[] args) {

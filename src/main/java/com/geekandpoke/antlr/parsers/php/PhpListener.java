@@ -1,12 +1,21 @@
 package com.geekandpoke.antlr.parsers.php;
 
+import com.geekandpoke.antlr.common.Words;
 import com.geekandpoke.antlr.grammars.php.PhpParser;
 import com.geekandpoke.antlr.grammars.php.PhpParserBaseListener;
 import com.geekandpoke.antlr.parsers.ListenerGuard;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class PhpListener extends PhpParserBaseListener {
 
+    private final Words words;
     ListenerGuard identifierGuard = new ListenerGuard();
+
+    public PhpListener(Words words) {
+        this.words = words;
+    }
 
     @Override
     public void enterIdentifier(PhpParser.IdentifierContext ctx) {

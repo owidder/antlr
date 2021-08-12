@@ -18,7 +18,7 @@ public class PrintTokensTypeScriptLexer extends TypeScriptLexer {
     public void emit(Token t) {
         super.emit(t);
         if(t.getType() == TypeScriptLexer.StringLiteral) {
-            System.out.println(t.getText());
+            words.add(t.getText());
         }
     }
 }

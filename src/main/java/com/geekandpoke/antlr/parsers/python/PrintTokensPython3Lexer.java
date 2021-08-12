@@ -18,7 +18,7 @@ public class PrintTokensPython3Lexer extends Python3Lexer {
     public void emit(Token t) {
         super.emit(t);
         if(t.getType() == Python3Lexer.STRING) {
-            System.out.println(t.getText());
+            words.add(t.getText());
         }
     }
 }

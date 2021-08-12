@@ -17,7 +17,7 @@ public class PhpListenerStarter {
         try {
             var words = new Words();
 
-            var code = FileUtil.readFile(new File("/Users/oliverwidder/Documents/dev/erp_doc/dolibarr/scripts/contracts/email_expire_services_to_customers.php"), StandardCharsets.UTF_8);
+            var code = FileUtil.readFile(new File(absPath), StandardCharsets.UTF_8);
             var lexer = new PrintTokensPhpLexer(CharStreams.fromString(code), words);
             var tokens = new CommonTokenStream(lexer);
             var parser = new PhpParser( tokens);
@@ -40,5 +40,7 @@ public class PhpListenerStarter {
     }
 
     public static void main(String[] args) throws IOException {
+        var words = PhpListenerStarter.start("/Users/oliverwidder/Documents/dev/erp_doc/dolibarr/scripts/contracts/email_expire_services_to_customers.php");
+        System.out.println(words);
     }
 }

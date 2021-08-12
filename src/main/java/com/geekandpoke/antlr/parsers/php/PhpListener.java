@@ -20,7 +20,7 @@ public class PhpListener extends PhpParserBaseListener {
     @Override
     public void enterIdentifier(PhpParser.IdentifierContext ctx) {
         if(identifierGuard.isGateOpen()) {
-            System.out.println(ctx.getText());
+            words.add(ctx.getText());
         }
     }
 

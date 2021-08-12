@@ -35,6 +35,7 @@ public class Java9ListenerStarter {
     }
 
     public static void main(String[] args) {
-        Java9ListenerStarter.start("/Users/oliverwidder/Documents/dev/erp_doc/axelor-open-suite/axelor-business-project/src/main/java/com/axelor/apps/businessproject/web/ProjectFolderController.java");
+        var words = Java9ListenerStarter.start("/Users/oliverwidder/Documents/dev/erp_doc/axelor-open-suite/axelor-business-project/src/main/java/com/axelor/apps/businessproject/web/ProjectFolderController.java");
+        System.out.println(words);
     }
 }

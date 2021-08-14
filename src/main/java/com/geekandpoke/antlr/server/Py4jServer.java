@@ -9,16 +9,20 @@ import py4j.GatewayServer;
 public class Py4jServer {
 
     public String startListener(String absPath) {
-        var parts = absPath.split("\\.");
-        var ext = parts[parts.length-1];
+        try {
+            var parts = absPath.split("\\.");
+            var ext = parts[parts.length-1];
 
-        return switch (ext) {
-            case "java" -> Java9ListenerStarter.start(absPath);
-            case "php" -> PhpListenerStarter.start(absPath);
-            case "py" -> PythonListenerStarter.start(absPath);
-            case "js", "jsx", "ts", "tsx" -> TypeScriptListenerStarter.start(absPath);
-            default -> "";
-        };
+            return switch (ext) {
+                case "java" -> Java9ListenerStarter.start(absPath);
+                case "php" -> PhpListenerStarter.start(absPath);
+                case "py" -> PythonListenerStarter.start(absPath);
+                case "js", "jsx", "ts", "tsx" -> TypeScriptListenerStarter.start(absPath);
+                default -> "";
+            };
+        } catch (Exception e) {
+            return "";
+        }
     }
 
     public static void main(String[] args) {

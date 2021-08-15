@@ -17,7 +17,7 @@ public class PythonListenerStarter {
         try {
             var words = new Words();
 
-            String code = FileUtil.readFile(new File("/Users/oliverwidder/Documents/dev/erp_doc/erpnext/code/healthcare/doctype/clinical_procedure/clinical_procedure.py"), StandardCharsets.UTF_8);
+            String code = FileUtil.readFile(new File(absPath), StandardCharsets.UTF_8);
             var lexer = new PrintTokensPython3Lexer(CharStreams.fromString(code), words);
             var tokens = new CommonTokenStream(lexer);
             var parser = new Python3Parser(tokens);

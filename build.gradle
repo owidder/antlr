@@ -1,6 +1,5 @@
 plugins {
     id 'java'
-    id 'idea'
 }
 
 group 'com.geekandpoke'
@@ -10,13 +9,22 @@ repositories {
     mavenCentral()
 }
 
+configurations {
+    libsForJar
+}
+
 dependencies {
-    implementation "org.antlr:antlr4-runtime:4.9.2"
-    implementation group: 'net.sf.py4j', name: 'py4j', version: '0.10.9.2'
+    libsForJar "org.antlr:antlr4-runtime:4.9.2"
+    libsForJar "net.sf.py4j:py4j:0.10.9.2"
+    configurations.implementation.extendsFrom(configurations.libsForJar)
 }
 
 jar {
     manifest {
         attributes 'Main-Class': 'com.geekandpoke.antlr.server.Py4jServer'
+    }
+
+    from {
+        configurations.libsForJar.collect { it.isDirectory() ? it : zipTree(it) }
     }
 }

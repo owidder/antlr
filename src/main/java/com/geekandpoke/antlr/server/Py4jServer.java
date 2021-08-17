@@ -8,7 +8,7 @@ import py4j.GatewayServer;
 
 public class Py4jServer {
 
-    public String startListener(String absPath) {
+    private static String _startListener(String absPath) {
         try {
             var parts = absPath.split("\\.");
             var ext = parts[parts.length-1];
@@ -25,8 +25,16 @@ public class Py4jServer {
         }
     }
 
+    public String startListener(String absPath) {
+        return Py4jServer._startListener(absPath);
+    }
+
     public static void main(String[] args) {
-        GatewayServer gatewayServer = new GatewayServer(new Py4jServer());
-        gatewayServer.start();
+        if(args.length > 0) {
+            System.out.println(_startListener(args[0]));
+        } else {
+            GatewayServer gatewayServer = new GatewayServer(new Py4jServer());
+            gatewayServer.start();
+        }
     }
 }

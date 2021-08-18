@@ -4,7 +4,7 @@ import java.util.Stack;
 
 public class ListenerGuard {
 
-    private Stack<Boolean> stack = new Stack<>();
+    private final Stack<Boolean> stack = new Stack<>();
 
     public void openGate() {
         stack.push(true);
